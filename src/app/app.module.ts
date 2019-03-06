@@ -11,11 +11,11 @@ import { MaterialModule} from './material/material.module';
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { FooterComponent } from './layouts/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SideNavComponent } from './sidenav/sidenav.component';
 import { RightScreenComponent } from './rightscreen/rightscreen.component';
-import { FooterComponent } from './layouts/footer/footer.component';
 
 @NgModule({
   declarations: [
