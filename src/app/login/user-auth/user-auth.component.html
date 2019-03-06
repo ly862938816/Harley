@@ -1,0 +1,97 @@
+  <div @myFadeinTrigger *ngIf="isShow" class="container login-page" >
+    <div  class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+        <form (ngSubmit)="login(authForm.form)" #authForm="ngForm">
+          <div class="card card-login">
+            <div class="card-header card-header-info text-center">
+              <h4 class="card-title">Log in with social acount</h4>
+              <div class="social-line">
+                <a class="btn btn-just-icon btn-link btn-white" href="">
+                  <i class="fa fa-weixin"></i>
+                </a>
+                <a class="btn btn-just-icon btn-link btn-white" href="">
+                  <i class="fa fa-github"></i>
+                </a>
+                <a class="btn btn-just-icon btn-link btn-white" (click)="loginOkta()">
+                  <i class="fa fa-openid"></i>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-description text-center">Register new Account</p>
+              <!-- <span class="bmd-form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">face</i>
+                      </span>
+                    </div>
+                    <div class="form-group" style="width: 82%">
+                      <input type="text" class="form-control" id="user-name" placeholder="Username or UserID...*" [(ngModel)]="userName" name="username"
+                        #name="ngModel" required>
+                      <div *ngIf="name.touched">
+                        <mat-error for="user-name" *ngIf="name.control.hasError('required') && name.touched" class="validation-message" style="position: fixed;">Userame
+                          is
+                          required</mat-error>
+                        <label *ngIf="" class="alert alert-danger validation-message">A user
+                           with this name already exists.</label>
+                      </div>
+                    </div>
+                  </div>
+              </span> -->
+              <span class="bmd-form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">email</i>
+                    </span>
+                  </div>
+                  <div class="form-group" style="width: 82%">
+                    <input  class="form-control" id="user-email" placeholder="Enter your email*" [(ngModel)]="email" name="email" email #useremail="ngModel" required>
+                    <div *ngIf="useremail.touched">
+                      <mat-error *ngIf="useremail.control.hasError('required')" class="validation-message" style="position: fixed;">You must enter email address</mat-error>
+                    </div>
+                    <div *ngIf="useremail.dirty">
+                      <mat-error *ngIf="useremail.control.hasError('email')" class="validation-message"
+                        style="position: fixed;">Not a valid email</mat-error>
+                    </div>
+                      
+                      <!-- <label *ngIf="" class="alert alert-danger validation-message">A user
+                        with this email already exists.</label> -->
+                  </div>
+                </div>
+              </span>
+              <span class="bmd-form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  <div class="form-group" style="width: 82%">
+                    <input type="password" class="form-control" id="user-password" placeholder="Password..." [(ngModel)]="password" name="password"
+                      #passWord="ngModel" required>
+                    <div *ngIf="passWord.touched">
+                      <mat-error *ngIf="passWord.control.hasError('required')" style="position: fixed;">Password
+                        is
+                        required</mat-error>
+                    </div>
+                  </div>
+                </div>
+              </span>
+              <!-- <span *ngIf="err" class="bmd-form-group">
+                <div class="input-group">
+                  <div class="form-group" style="width: 82%">
+                    <mat-error  style="position: fixed;">{{err}}</mat-error>
+                  </div> 
+                </div>
+              </span> -->
+            </div>
+            <div class="card-footer justify-content-center">
+              <button class="btn btn-rose btn-link btn-lg" type="submit" [disabled]="!authForm.form.valid">Lets Go</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
