@@ -26,13 +26,13 @@ export class NavbarComponent {
         = new EventEmitter<string>();
 
  constructor (private http: HttpClient) {
-    console.log('AppComponent constructor');
+    // console.log('AppComponent constructor');
    this.http.get<any>('http://localhost:3000/menuitems')
      .subscribe(
       (data) => {
-         console.log(`got : ${data['menuItems'][0].buttonName}`);
+         // console.log(`got : ${data['menuItems'][0].buttonName}`);
          this.menuItems = data['menuItems'];
-         console.log(`got : ${this.menuItems[0].buttonName}`);
+         // console.log(`got : ${this.menuItems[0].buttonName}`);
       },
       err => {
         console.log(`error : ${err}`);
