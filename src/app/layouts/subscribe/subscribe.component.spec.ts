@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RightscreenComponent } from './rightscreen.component';
+import { SubscribeComponent } from './subscribe.component';
 
-describe('RightscreenComponent', () => {
-  let component: RightscreenComponent;
-  let fixture: ComponentFixture<RightscreenComponent>;
+describe('SubscribeComponent', () => {
+  let component: SubscribeComponent;
+  let fixture: ComponentFixture<SubscribeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RightscreenComponent ]
+      declarations: [ SubscribeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RightscreenComponent);
+    fixture = TestBed.createComponent(SubscribeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
