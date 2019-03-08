@@ -16,8 +16,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { HeaderComponent } from './layouts/header/header.component';
-import { SubscribeComponent } from './layouts/subscribe/subscribe.component';
+
+
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 
@@ -28,8 +29,7 @@ import { SubscribeComponent } from './layouts/subscribe/subscribe.component';
     NavbarComponent,
     LoginComponent,
     FooterComponent,
-    HeaderComponent,
-    SubscribeComponent
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

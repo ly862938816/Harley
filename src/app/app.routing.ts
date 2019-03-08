@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 // import { AuthGuardService } from './login/user-auth/auth-guard.service';
 import { AppComponent } from './app.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { HomeModule } from './home/home.module';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent
+    component: HomeComponent
     // canActivate: [AuthGuardService],
     // pathMatch: 'full'
   },
@@ -23,7 +25,7 @@ const routes: Routes = [
     ]}, */
   {
     path: '**',
-    component: AppComponent
+    component: PagenotfoundComponent
   }
 ];
 
