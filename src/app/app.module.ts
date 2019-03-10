@@ -5,20 +5,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { boardStateReducer } from './core/board.reducer';
+
+// Modules
 import { MaterialModule} from './material/material.module';
 import { HomeModule } from './home/home.module';
 import { AppRoutingModule } from './app.routing';
 
 
+// Container Components
+import { CheckoutCartComponent } from './containers/checkout-cart/checkout-cart.component';
 
-
+// Dumb Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { LoginComponent } from './login/login.component';
-
-
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { ProductDetailComponent } from './containers/product-detail/product-detail.component';
+
 
 
 
@@ -27,9 +32,12 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
   declarations: [
     AppComponent,
     NavbarComponent,
+    HeaderComponent,
     LoginComponent,
     FooterComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    CheckoutCartComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

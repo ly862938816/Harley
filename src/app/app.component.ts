@@ -31,7 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.boardStateSubsrciption.unsubscribe();
   }
 
-  onNotifyNavbar(buttonName: string) {}
+  onNotifyNavbar(buttonName: string) {
+  }
 
   showHideSideClicked() {}
 }
