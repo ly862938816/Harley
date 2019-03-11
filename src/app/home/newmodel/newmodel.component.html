@@ -1,6 +1,14 @@
 <div class="section">
   <div class="container">
-    <h2 class="section-title">最新型号</h2>
+    <h2 class="section-title">最新产品</h2>
+    <ng-container *ngIf="isLoading">
+      <app-loading-spinner>
+        数据加载中...
+      </app-loading-spinner>
+    </ng-container>
+    <ng-container *ngIf="isError">
+      <app-network-error-component></app-network-error-component>
+    </ng-container>
     <div class="row">
       <div class="col-md-4">
         <div class="card card-product card-plain">
@@ -21,8 +29,8 @@
           </div>
           <div class="card-footer">
             <div class="price-container">
-              <span class="price price-old"> €1,430</span>
-              <span class="price price-new"> €743</span>
+              <span class="price price-old"> ￥1,430</span>
+              <span class="price price-new"> ￥743</span>
             </div>
             <div class="stats ml-auto">
               <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose"

@@ -8,6 +8,7 @@ import {
   MatRippleModule,
   MatToolbarModule,
   MatTooltipModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { MatBadgeModule } from '@angular/material/badge';
@@ -22,6 +23,7 @@ const Material = [
   MatRippleModule,
   MatToolbarModule,
   MatTooltipModule,
+  MatProgressSpinnerModule
 ];
 @NgModule({
   imports: [

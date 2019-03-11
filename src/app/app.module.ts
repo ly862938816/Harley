@@ -21,6 +21,7 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { LoginComponent } from './login/login.component';
+
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProductDetailComponent } from './containers/product-detail/product-detail.component';
 
