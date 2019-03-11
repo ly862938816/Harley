@@ -6,5 +6,5 @@ import { IEnvironment } from './environment.interface';
 
 export const environment: IEnvironment = {
   production: false,
-  storeApiPath: 'http://localhost:3000'
+  storeApiPath: 'https://swapi.co/api'
 };

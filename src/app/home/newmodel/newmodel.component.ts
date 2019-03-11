@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsListItem } from '../../models/items-list-item';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+import { ProductItemsService } from '../../providers/product-items.service';
 
 @Component({
   selector: 'app-newmodel',
@@ -8,20 +10,24 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./newmodel.component.css']
 })
 export class NewmodelComponent implements OnInit {
-  public itemlist: Array<ItemsListItem>;
+  public itemsList: Array<ItemsListItem>;
   public isLoading = false;
   public isError = false;
 
-  constructor(private http: HttpClient) {
-    this.http.get<ItemsListItem>('http://localhost:3000/newModelItems').subscribe(
-      (data) => {
-        this.itemlist = data['newModelItems'];
-        console.log(this.itemlist);
-      }
-    );
-  }
+  constructor(private itemsProvider: ProductItemsService,
+    private router: Router) {}
 
   ngOnInit() {
+    this.isLoading = true;
+    this.itemsProvider.getItemsList()
+      .subscribe(itemsList => {
+        console.log('item is : component', itemsList);
+        this.itemsList = itemsList;
+        this.isLoading = false;
+      }, err => {
+        this.isLoading = false;
+        this.isError = true;
+      });
   }
 
 }

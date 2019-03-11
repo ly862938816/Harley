@@ -7,7 +7,7 @@ import { slideInAnimation } from '../../animations';
 
 // 消息提醒服务
 import { NotifyService } from '../../core/notify.service';
-import { INotifyConifg } from '../../core/model';
+import { INotifyConifg } from '../../models/model';
 
 
 import { Subscription, Observable } from 'rxjs/';

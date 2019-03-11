@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { INotifyConifg } from './model';
+import { INotifyConifg } from '../models/model';
 
 declare var $: any;
 @Injectable()
