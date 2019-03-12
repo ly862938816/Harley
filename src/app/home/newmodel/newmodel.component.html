@@ -10,90 +10,28 @@
       <app-network-error-component></app-network-error-component>
     </ng-container>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" *ngFor="let item of itemsList; let i=index">
         <div class="card card-product card-plain">
           <div class="card-header card-header-image">
             <a mat-flat-button routerLink="/product-detail">
-              <img src="../assets/img/moto/timg.jpeg" alt="">
+              <img src="{{item.image}}">
             </a>
-            <div class="colored-shadow"
-              style="background-image: url(&quot;../assets/img/moto/timg.jpeg&quot;); opacity: 1;">
-            </div>
           </div>
           <div class="card-body text-center">
             <h4 class="card-title">
-              <a routerLink="/product-detail">Street™750</a>
+              <a routerLink="/product-detail">{{item.label}}</a>
             </h4>
-            <p class="card-description">The structured shoulders and sleek detailing ensure a sharp
-              silhouette. Team it with a silk pocket square and leather loafers.</p>
+            <p class="card-description">{{item.productBrief}}</p>
           </div>
           <div class="card-footer">
             <div class="price-container">
-              <span class="price price-old"> ￥1,430</span>
-              <span class="price price-new"> ￥743</span>
+              <span class="price price-old"> ￥{{item.cost}}</span>
+              <span class="price price-new"> ￥{{item.afterDiscount}}</span>
             </div>
             <div class="stats ml-auto">
               <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose"
                 data-original-title="Saved to Wishlist">
-                <i class="material-icons">favorite</i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-product card-plain">
-          <div class="card-header card-header-image">
-            <a mat-flat-button routerLink="/product-detail">
-              <img src="../assets/img/moto/timg-1.jpg" alt="">
-            </a>
-            <div class="colored-shadow"
-              style="background-image: url(&quot;../assets/img/moto/timg-1.jpg&quot;); opacity: 1;">
-            </div>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title" routerLink="/product-detail">Street™ Bob</h4>
-            <p class="card-description">The structured shoulders and sleek detailing ensure a sharp
-              silhouette. Team it with a silk pocket square and leather loafers.</p>
-          </div>
-          <div class="card-footer">
-            <div class="price-container">
-              <span class="price price-old"> €1,430</span>
-              <span class="price price-new">€743</span>
-            </div>
-            <div class="stats ml-auto">
-              <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose"
-                data-original-title="Saved to Wishlist">
-                <i class="material-icons">favorite</i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-product card-plain">
-          <div class="card-header card-header-image">
-            <a mat-flat-button routerLink="/product-detail">
-              <img src="../assets/img/moto/timg-2.jpg" alt="">
-            </a>
-            <div class="colored-shadow"
-              style="background-image: url(&quot;../assets/img/moto/timg-2.jpg&quot;); opacity: 1;">
-            </div>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title" routerLink="/product-detail">Dolce &amp; Gabbana</h4>
-            <p class="card-description">The structured shoulders and sleek detailing ensure a sharp
-              silhouette. Team it with a silk pocket square and leather loafers.</p>
-          </div>
-          <div class="card-footer">
-            <div class="price-container">
-              <span class="price price-old"> €1,430</span>
-              <span class="price price-new">€743</span>
-            </div>
-            <div class="stats ml-auto">
-              <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose"
-                data-original-title="Saved to Wishlist">
-                <i class="material-icons">favorite</i>
+                <i class="material-icons">{{item.favourite?'favorite':'favorite_border'}}</i>
               </button>
             </div>
           </div>
