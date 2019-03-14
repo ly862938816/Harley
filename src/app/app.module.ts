@@ -18,7 +18,7 @@ import { CheckoutCartComponent } from './containers/checkout-cart/checkout-cart.
 // Dumb Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
-import { HeaderComponent } from './layouts/header/header.component';
+
 import { FooterComponent } from './layouts/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 
@@ -33,7 +33,6 @@ import { ProductDetailComponent } from './containers/product-detail/product-deta
   declarations: [
     AppComponent,
     NavbarComponent,
-    HeaderComponent,
     LoginComponent,
     FooterComponent,
     PagenotfoundComponent,

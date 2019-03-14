@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  private imgUrl: string;
+  private headerStyle = {};
+
+  // 从激活路由中获取背景的图片路径数据
+  constructor(private route: ActivatedRoute) {
+    this.route.data.subscribe(
+      (data) => {
+        this.imgUrl = `url(${data['backimg']})`;
+        this.headerStyle = {
+          'background-image': this.imgUrl,
+          'transform': 'translate3d(0px, 0px, 0px)'
+        }
+      }
+    );
+  }
 
   ngOnInit() {
+    
   }
 
 }

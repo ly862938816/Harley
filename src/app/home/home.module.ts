@@ -11,10 +11,10 @@ import { NetworkErrorComponent } from '../layouts/network-error/network-error.co
 import { SubscribeComponent } from '../layouts/subscribe/subscribe.component';
 import { HomefooterComponent } from './homefooter/homefooter.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { HeaderComponent } from '../layouts/header/header.component';
 
-@NgModule({
-  declarations: [
-    NewmodelComponent,
+const components = [
+  NewmodelComponent,
     NewsfashionComponent,
     ArticleComponent,
     HomeComponent,
@@ -22,7 +22,13 @@ import { ProductListComponent } from './product-list/product-list.component';
     HomefooterComponent,
     LoadingSpinnerComponent,
     NetworkErrorComponent,
+    HeaderComponent,
     ProductListComponent
+];
+
+@NgModule({
+  declarations: [
+    components
   ],
   imports: [
     MaterialModule,
@@ -30,8 +36,7 @@ import { ProductListComponent } from './product-list/product-list.component';
     RouterModule
   ],
   exports: [
-    HomeComponent,
-    ProductListComponent
+    components
   ]
 })
 export class HomeModule { }

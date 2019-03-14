@@ -11,15 +11,18 @@ import { ProductDetailComponent } from './containers/product-detail/product-deta
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    data: {backimg: '../../assets/img/moto/bj-1.jpeg'}
   },
   {
     path: 'checkout',
-    component: CheckoutCartComponent
+    component: CheckoutCartComponent,
+    data: {backimg: '../../assets/img/moto/bj-2.jpeg'}
   },
   {
     path: 'product-detail',
-    component: ProductDetailComponent
+    component: ProductDetailComponent,
+    data: {backimg: '../../assets/img/moto/bj-3.jpeg'}
   },
   {
     path: '**',

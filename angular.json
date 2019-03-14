@@ -25,15 +25,16 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.js",
+            "scripts": [  
+              "src/assets/js/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.js",
               "node_modules/bootstrap-material-design/dist/js/bootstrap-material-design.min.js",
               "node_modules/arrive/src/arrive.js",
               "node_modules/moment/moment.js",
               "node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js",
               "node_modules/bootstrap-notify/bootstrap-notify.js",
-              "node_modules/chartist/dist/chartist.js"
+              "node_modules/chartist/dist/chartist.js",
+              "src/assets/js/material-kit.min.js"
             ]
           },
           "configurations": {
