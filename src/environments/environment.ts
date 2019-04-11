@@ -6,5 +6,5 @@ import { IEnvironment } from './environment.interface';
 
 export const environment: IEnvironment = {
   production: false,
-  storeApiPath: 'http://localhost:3000'
+  storeApiPath: 'http://192.168.1.5:3000'
 };

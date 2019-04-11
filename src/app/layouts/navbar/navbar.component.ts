@@ -27,7 +27,7 @@ export class NavbarComponent {
 
  constructor (private http: HttpClient) {
     // console.log('AppComponent constructor');
-   this.http.get<any>('http://localhost:3000/menuitems')
+   this.http.get<any>('http://192.168.1.5:3000/apIMenuItems')
      .subscribe(
       (data) => {
          // console.log(`got : ${data['menuItems'][0].buttonName}`);
