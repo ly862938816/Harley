@@ -21,7 +21,7 @@ export interface INotifyConifg {
     timer?: number;
     delay?: number;
 }
-
+//配置路径
 export class AppConst {
     public static readonly STORE_API_PATHS = {
         getMenuItems: '/apiMenuitems',

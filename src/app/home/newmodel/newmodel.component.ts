@@ -23,7 +23,7 @@ export class NewmodelComponent implements OnInit {
       .subscribe(itemsList => {
         // console.log('item is : component', itemsList);
         this.itemsList = itemsList['newModelItems'].slice(0,3);
-         console.log(`this.itemsList: ${JSON.stringify(this.itemsList)}`);
+        //  console.log(`this.itemsList: ${JSON.stringify(this.itemsList)}`);
         this.isLoading = false;
       }, err => {
         this.isLoading = false;

@@ -10,7 +10,7 @@ export class ApiProvider {
 
   constructor(private http: HttpClient) { }
 
-  httpGet<T>(url, options?: any): Observable<T> {
+  httpGet<T>(url, options?: any): Observable<T>{
     return this.http
       .get<T>(url, options)
       .catch(err => {

@@ -6,10 +6,10 @@ export class ItemsListItem {
   category: string;
   categoryId: string;
   productId: string;
-  productBrief?: string;
-  productDetail?: string;
-  afterDiscount?: number;
-  favourite?: boolean;
+  productBrief: string;
+  productDetail: string;
+  afterDiscount: number;
+  favourite: boolean;
   constructor(inputObj) {
     if (inputObj) {
       this.cost = Number(inputObj.cost);

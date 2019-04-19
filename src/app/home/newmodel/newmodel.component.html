@@ -1,42 +1,41 @@
 <div class="section">
-  <div class="container">
-    <h2 class="section-title">最新产品</h2>
-    <ng-container *ngIf="isLoading">
-      <app-loading-spinner>
-        数据加载中...
-      </app-loading-spinner>
-    </ng-container>
-    <ng-container *ngIf="isError">
-      <app-network-error-component></app-network-error-component>
-    </ng-container>
-    <div class="row">
-      <div class="col-md-4" *ngFor="let item of itemsList; let i=index">
-        <div class="card card-product card-plain">
-          <div class="card-header card-header-image">
-            <a mat-flat-button routerLink="/product-detail">
-              <img src="{{item.image}}">
-            </a>
-          </div>
-          <div class="card-body text-center">
-            <h4 class="card-title">
-              <a routerLink="/product-detail">{{item.label}}</a>
-            </h4>
-            <p class="card-description">{{item.productBrief}}</p>
-          </div>
-          <div class="card-footer">
-            <div class="price-container">
-              <span class="price price-old"> ￥{{item.cost}}</span>
-              <span class="price price-new"> ￥{{item.afterDiscount}}</span>
+    <div class="container">
+        <h2 class="section-title">最新产品</h2>
+        <ng-container *ngIf="isLoading">
+            <app-loading-spinner>
+                数据加载中...
+            </app-loading-spinner>
+        </ng-container>
+        <ng-container *ngIf="isError">
+            <app-network-error-component></app-network-error-component>
+        </ng-container>
+        <div class="row">
+            <div class="col-md-4" *ngFor="let item of itemsList; let i=index">
+                <div class="card card-product card-plain">
+                    <div class="card-header card-header-image">
+                        <a mat-flat-button [routerLink]="['/product-detail',item.itemId]">
+                            <img src="{{item.image}}">
+                        </a>
+                    </div>
+                    <div class="card-body text-center">
+                        <h4 class="card-title">
+                            <a routerLink="/product-detail">{{item.label}}</a>
+                        </h4>
+                        <p class="card-description">{{item.productBrief}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price-container">
+                            <span class="price price-old"> ￥{{item.cost}}</span>
+                            <span class="price price-new"> ￥{{item.afterDiscount}}</span>
+                        </div>
+                        <div class="stats ml-auto">
+                            <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose" data-original-title="Saved to Wishlist">
+                              <i class="material-icons">{{item.favourite?'favorite':'favorite_border'}}</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="stats ml-auto">
-              <button type="button" rel="tooltip" title="" class="btn btn-just-icon btn-link btn-rose"
-                data-original-title="Saved to Wishlist">
-                <i class="material-icons">{{item.favourite?'favorite':'favorite_border'}}</i>
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
