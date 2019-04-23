@@ -12,34 +12,33 @@
                                 <th class="text-center"></th>
                                 <th>商品</th>
                                 <th class="th-description">颜色</th>
-                                <th class="th-description">大小</th>
+                                <th class="th-description">排量</th>
                                 <th class="text-right">价格</th>
                                 <th class="text-right">数量</th>
                                 <th class="text-right">总计</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody *ngFor="let item of cartItems">
                             <!-- 购物车内容 -->
                             <tr>
                                 <td>
                                     <div class="img-container">
-                                        <img src="../../../assets/img/moto/chartlist/timg1.jpg" alt="...">
+                                        <img src="{{item.image}}">
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a href="#jacket">Spring Jacket</a>
+                                    <a href="#jacket">{{item.label}}</a>
                                     <br>
-                                    <small>by Dolce&amp;Gabbana</small>
                                 </td>
                                 <td>
-                                    Red
+                                    {{item.color}}
                                 </td>
                                 <td>
-                                    M
+                                    {{item.output}}
                                 </td>
                                 <td class="td-number text-right">
-                                    <small>￥</small>549
+                                    <small>￥</small>{{item.afterDiscount}}
                                 </td>
                                 <td class="td-number">
                                     1
@@ -47,9 +46,6 @@
                                         <button class="btn btn-round btn-info"> <i class="material-icons">remove</i> </button>
                                         <button class="btn btn-round btn-info"> <i class="material-icons">add</i> </button>
                                     </div>
-                                </td>
-                                <td class="td-number">
-                                    <small>￥</small>549
                                 </td>
                                 <td class="td-actions">
                                     <button type="button" rel="tooltip" data-placement="left" title="" class="btn btn-link" data-original-title="Remove item">
@@ -65,7 +61,7 @@
                                     总计
                                 </td>
                                 <td colspan="1" class="td-price">
-                                    <small>￥</small>2,346
+                                    <small>￥</small>{{totalPrice}}
                                 </td>
                                 <td colspan="1"></td>
                                 <td colspan="2" class="text-right">

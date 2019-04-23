@@ -11,6 +11,12 @@ import { ProductDetailComponent } from './containers/product-detail/product-deta
 const routes: Routes = [
   {
     path: '',
+    redirectTo:'/items',
+    pathMatch:'full',
+    data: {backimg: '../../assets/img/moto/bj-1.jpeg'}
+  },
+  {
+    path: 'items',
     component: HomeComponent,
     data: {backimg: '../../assets/img/moto/bj-1.jpeg'}
   },

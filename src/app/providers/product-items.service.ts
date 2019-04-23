@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/';
+import { Observable, from } from 'rxjs/';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
@@ -28,36 +28,22 @@ export class ProductItemsService {
       .pipe(
         map((res: any) => {
           if (res) {
-            // console.log('res is ', res);
             return res;
           }
         }));
   }
   getItem(id: string): Observable<ItemDescription> {
-    const pathWithId: string = AppConst.STORE_API_PATHS.itemDescription.replace('{{id}}', id);
-    const itemDesc = `${this.storeApiPath}${pathWithId}`;
-    console.log(itemDesc);
-    return this.apiProvider.httpGet<ItemDescription>(itemDesc)
-      .pipe(
-        map( (res: ItemDescription) => {
-          console.log('from server:' + JSON.stringify(res));
-          res = itemDescriptionListMock[Number(id) - 1];
-          console.log('from mock:' + JSON.stringify(res));
-          //  res = new ItemDescription(res);
-         // console.log('after new:' + JSON.stringify(res));
-          return res;
-        })
-      );
-      // .pipe(
-      //   map((res: any) => {
-      //     if (res) {
-      //       console.log(res);
-      //       res = itemDescriptionListMock[Number(id) - 1];
-      //       // res = new ItemDescription(res);
-      //       // console.log(res)
-      //       return res;
-      //     }
-      //   })
-      // );
+    //: Observable<ItemDescription>
+    const pathWithId: string = AppConst.STORE_API_PATHS.itemDescription.replace('{{id}}', id);//api路径
+    //const itemDesc = `${this.storeApiPath}${pathWithId}`//服务器地址和api地址路径，详细地址
+    return from(itemDescriptionListMock).pipe(
+      map((res:any)=>{
+        if(res){
+          res = itemDescriptionListMock[Number(id)-1];
+          res = new ItemDescription(res);
+        }
+        return res;
+      })
+    )
   }
 }
