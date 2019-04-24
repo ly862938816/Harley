@@ -39,76 +39,8 @@ export class CartService {
     return this.apiProvider.httpPost(url, buyParam);
   }
 
-  private verifyVoucherCodeFromServer(voucher: string): Observable<any> {
-    const url: string = this.storeApiPath + AppConst.STORE_API_PATHS.verfiyVoucher;
-    // Ideally we should use post method
-    // Body should contain the cart and the voucher code
-    return this.apiProvider.httpGet(url);
-  }
-
   private getFootWearCategoryIds(): string[] {
     return FootWearCateogryIds;
-  }
-
-  private isFootwearPresent(): boolean {
-    if (this.totalItems) {
-      for (const i in this.cartItems) {
-        if (this.cartItems[i] && this.getFootWearCategoryIds().indexOf(this.cartItems[i].categoryId) !== -1) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  private updateDiscountedPrice(): VoucherCodeResponse {
-    const voucherCodeResponse = new VoucherCodeResponse;
-
-    voucherCodeResponse.success = false;
-    this.priceAfterDiscount = this.totalPrice;
-
-    if (this.totalItems && this.totalPrice > 5 && this.voucherApplied && this.currentVoucher) {
-      switch (this.currentVoucher.toUpperCase()) {
-        case AppConst.VOUCHER_CODES.OFF5:
-          this.priceAfterDiscount = this.totalPrice - 5;
-          voucherCodeResponse.description = 'Voucher succesfully applied.';
-          break;
-        case AppConst.VOUCHER_CODES.OFF10:
-          if (this.totalPrice > 50) {
-            this.priceAfterDiscount = this.totalPrice - 10;
-            voucherCodeResponse.description = 'Voucher succesfully applied.';
-          } else {
-            this.voucherApplied = false;
-            this.currentVoucher = '';
-            voucherCodeResponse.success = false;
-            voucherCodeResponse.description = 'This voucher can be applied only when the cart value is above 50';
-          }
-          break;
-        case AppConst.VOUCHER_CODES.OFF15:
-          if (this.totalPrice > 75 && this.isFootwearPresent()) {
-            this.priceAfterDiscount = this.totalPrice - 15;
-            voucherCodeResponse.description = 'Voucher succesfully applied';
-          } else {
-            this.voucherApplied = false;
-            this.currentVoucher = '';
-            voucherCodeResponse.success = false;
-            voucherCodeResponse.description =
-              'This voucher can be applied only when the cart value is boave 75 and atleast one footwear is present';
-          }
-          break;
-        default:
-          this.voucherApplied = false;
-          this.currentVoucher = '';
-          voucherCodeResponse.success = false;
-          voucherCodeResponse.description = 'Invalid voucher code. Please check.';
-          break;
-      }
-    } else {
-      this.currentVoucher = '';
-      this.voucherApplied = false;
-      voucherCodeResponse.description = 'Voucher cannot be applied to the current cart';
-    }
-    return voucherCodeResponse;
   }
   
   constructor(private apiProvider:ApiProvider){}
@@ -120,7 +52,7 @@ export class CartService {
       if (this.cartItems[productId].items_available > 0) {
         this.cartItems[productId].items_available = this.cartItems[productId].items_available - 1;
         this.cartItems[productId].count = this.cartItems[productId].count + 1;
-        this.totalPrice = this.totalPrice + item.cost;
+        this.totalPrice = this.totalPrice + item.afterDiscount;
         this.totalItems += 1;
       }
     } else {
@@ -129,7 +61,7 @@ export class CartService {
         this.cartItems[productId].max_items = this.cartItems[productId].items_available;
         this.cartItems[productId].items_available = this.cartItems[productId].items_available - 1;
         this.cartItems[productId].count = 1;
-        this.totalPrice = this.totalPrice + item.cost;
+        this.totalPrice = this.totalPrice + item.afterDiscount;
         this.totalItems += 1;
       }
     }
@@ -160,6 +92,8 @@ export class CartService {
   public getPriceAfterDiscount():number{
     return Number(this.priceAfterDiscount.toFixed(2));
   }
+
+  //去购买
   public buyItemsInCart(): Observable<any> {
     const totalItemVarieties: Array<string> = Object.keys(this.cartItems);
     if (this.cartItems && totalItemVarieties.length) {
@@ -190,7 +124,7 @@ export class CartService {
     if (this.cartItems[ref]) {
       const tempObj = this.cartItems[ref];
       this.totalPrice = this.totalPrice - (tempObj.count * tempObj.cost);
-      this.updateDiscountedPrice();
+      // this.updateDiscountedPrice();
       this.totalItems = this.totalItems - (tempObj.count);
       this.cartItems[ref] = null;
       delete this.cartItems[ref];
@@ -207,13 +141,13 @@ export class CartService {
         this.cartItems[ref].items_available = max_available - totalQuantity;
         this.totalPrice = this.totalPrice - currentPriceForThisItem;
         this.totalPrice = this.totalPrice + (this.cartItems[ref].count * this.cartItems[ref].cost);
-        this.updateDiscountedPrice();
+        // this.updateDiscountedPrice();
         this.totalItems = this.totalItems - curretnCountForThisItem;
         this.totalItems = this.totalItems + this.cartItems[ref].count;
       }
     }
   }
-
+//清空购物车
   public removeAllItemsFromCart() {
     this.cartItems = {};
     this.totalPrice = 0;
@@ -221,32 +155,5 @@ export class CartService {
     this.totalItems = 0;
     this.voucherApplied = false;
     this.currentVoucher = '';
-  }
-
-  public verifyVoucherCode(voucher: string): Observable<VoucherCodeResponse> {
-    let voucherCodeResponse = new VoucherCodeResponse();
-    voucherCodeResponse.success = false;
-
-    const observable: Observable<VoucherCodeResponse> = new Observable((observer) => {
-      if (this.totalItems && voucher && !this.voucherApplied && this.totalPrice > 5) {
-        this.verifyVoucherCodeFromServer(voucher).subscribe((res) => {
-          this.currentVoucher = voucher;
-          this.voucherApplied = true;
-          voucherCodeResponse.success = true;
-          voucherCodeResponse = this.updateDiscountedPrice();
-          observer.next(voucherCodeResponse);
-          observer.complete();
-        });
-      } else {
-        voucherCodeResponse.description = 'Voucher cannot be applied to the current cart';
-        observer.next(voucherCodeResponse);
-        observer.complete();
-      }
-    });
-
-    return observable;
-  }
-
-
-  
+  }  
 }

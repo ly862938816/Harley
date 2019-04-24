@@ -15,7 +15,7 @@
                                 <th class="th-description">排量</th>
                                 <th class="text-right">价格</th>
                                 <th class="text-right">数量</th>
-                                <th class="text-right">总计</th>
+                                <th class="text-right">删除</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -35,22 +35,18 @@
                                     {{item.color}}
                                 </td>
                                 <td>
-                                    {{item.output}}
+                                    {{item.output}}CC
                                 </td>
                                 <td class="td-number text-right">
                                     <small>￥</small>{{item.afterDiscount}}
                                 </td>
                                 <td class="td-number">
-                                    1
-                                    <div class="btn-group btn-group-sm">
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">remove</i> </button>
-                                        <button class="btn btn-round btn-info"> <i class="material-icons">add</i> </button>
-                                    </div>
+                                    <select [ngModel]="getQuantity(item.productId)" (change)="handleQuantityChange($event,item.productId)">
+                                        <option *ngFor="let option of getQuantityList(item.productId)" [value]="option"> {{option}} </option>
+                                    </select>
                                 </td>
-                                <td class="td-actions">
-                                    <button type="button" rel="tooltip" data-placement="left" title="" class="btn btn-link" data-original-title="Remove item">
-                                      <i class="material-icons">close</i>
-                                    </button>
+                                <td class="td-action text-right">
+                                    <button (click)="handleRemoveItem(item.productId)" mat-button color="primary">删除</button>
                                 </td>
                             </tr>
 
@@ -65,8 +61,9 @@
                                 </td>
                                 <td colspan="1"></td>
                                 <td colspan="2" class="text-right">
-                                    <button type="button" class="btn btn-info btn-round">去购买
-                                      <i class="material-icons">keyboard_arrow_right</i></button>
+                                    <button (click)="handleBuyNow()" class="btn btn-info btn-round">去购买
+                                      <i class="material-icons">keyboard_arrow_right</i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
