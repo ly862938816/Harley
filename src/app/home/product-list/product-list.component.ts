@@ -17,7 +17,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.itemsProvider.getItemsList().subscribe(
       itemsList =>{
-        this.itemsList = itemsList['newModelItems'].slice(0,6);
+        this.itemsList = itemsList['newModelItems'];
+        // this.itemsList = itemsList['newModelItems'].slice(0,6);
       }, err =>{
       });
   }
